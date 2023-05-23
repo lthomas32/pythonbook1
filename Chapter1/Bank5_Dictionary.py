@@ -50,6 +50,8 @@ def withdraw(accountNumber, amount, password):
     if password != thisAccountDict['password']:
         print('Incorrect Password!')
         return None
+    if amount < 0:
+        return None
     newBalance = thisAccountDict['balance'] - amount
     if newBalance < 0:
         print('You tried to withdraw to much money ')
@@ -102,17 +104,29 @@ while True:
         userName = input("What is your name? ")
         userStartingAmount = input("What is the amount of your initial deposit? ")
         userStartingAmount = int(userStartingAmount)
-        userPassword - input("What password would you like to use for this account")
+        userPassword = input("What password would you like to use for this account")
 
         userAccountNumber = len(accountsList)
-        newAccount(userName,userStartingAmount, userPassword)
+        newAccount(userName, userStartingAmount, userPassword)
         print('Your new account number: ', userAccountNumber)
 
-    #TODO Make option w for Withdrawel
+
+    elif action == 'w':
+        print("Withdrawal")
+        userAccountNumber = int(input("Please enter the account number: "))
+        userWithdrawalAmount = int(input("How much would you like to withdraw: "))
+        userPassword = input("Please input your password: ")
+
+        newBalance = withdraw(userAccountNumber, userWithdrawalAmount, userPassword)
+        if newBalance is None:
+            print('You made an error')
 
 
-    #TODO Make option s for Show All Accounts
+    # I know this prints everything I am just playing with the dictionaries and loops to learn
+    elif action == 's':
+        for data in accountsList:
+            print(data)
 
-
-    #TODO Make option q for quit aka break
-
+    else:
+        print("GOODBYE")
+        break
