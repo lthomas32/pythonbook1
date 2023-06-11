@@ -1,6 +1,6 @@
 class Account():
-    #this is basically the constructor and parameters
-    def __int__(self,name, balance, password):
+    # this is basically the constructor and parameters
+    def __int__(self, name, balance, password):
         self.name = name
         self.balance = int(balance)
         self.password = password
@@ -24,7 +24,6 @@ class Account():
             return None
         self.balance -= amountToWithdraw
         return self.balance
-
 
     def getBalance(self, password):
         if password != self.password:
